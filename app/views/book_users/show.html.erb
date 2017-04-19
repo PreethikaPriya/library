@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @book_user.book_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @book_user.user_id %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @book_user.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @book_user.to %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @book_user.status %>
+</p>
+
+<%= link_to 'Edit', edit_book_user_path(@book_user) %> |
+<%= link_to 'Back', book_users_path %>
