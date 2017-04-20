@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Book Users</h1>
+<h1>My Books</h1>
 
 <table class="table">
   <thead>
@@ -10,7 +10,9 @@
       <th>From</th>
       <th>To</th>
       <th>Status</th>
+      <% if current_user.role == "admin" %>
       <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -22,9 +24,13 @@
         <td><%= book_user.from %></td>
         <td><%= book_user.to %></td>
         <td><%= book_user.status.name%></td>
-        <td><%= link_to 'Show', book_user %>|
+        <% if current_user.role == "admin" %>
+        <td>
+        <%= link_to 'Show', book_user %>|
         <%= link_to 'Edit', edit_book_user_path(book_user) %>|
-        <%= link_to 'Destroy', book_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%#= link_to 'Destroy', book_user, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

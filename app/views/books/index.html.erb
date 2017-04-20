@@ -1,12 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Browse Books</h1>
+
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Author</th>
       <th>Category</th>
-      <th>Availability</th>
+      <% if current_user.role == "admin" %>
+        <th>Total Books</th>
+        <th> Total Borrowed </th>
+      <% end %>
+        <th> Available </th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -17,17 +23,26 @@
         <td><%= book.name %></td>
         <td><%= book.author %></td>
         <td><%= book.category.name %></td>
-        <td><%= book.availability %></td>
+        <% if current_user.role == "admin" %>
+          <td><%= book.availability %></td>
+          <td> <%= book.borrowed_count.to_i %></td>
+        <% end %>
+        <td> <%= book.availability - book.borrowed_count.to_i %></td>
         <% if can? :update, book %>
           <td><%= link_to 'Show', book %>|
           <%= link_to 'Edit', edit_book_path(book) %>|
           <%#= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%  elsif can? :read, book  %>
-          <td> <%#= link_to "Borrow",book_users_path(:book => book.id), {}, remote: true , method: :post ,  :class => 'btn btn-success btn-xs' %> 
-            <button class= "btn btn-success borrow-book" id="<%= book.id %>">
-              Borrow
-            </button>
-
+          <td>
+            <% if book_borrowed(current_user,book.id) %>
+              <button class= "btn btn-success borrow-book" id="<%= book.id %>">
+                Borrow Now
+              </button>
+            <% else %>
+               <button class= "btn btn-primary">
+                Borrowed!
+              </button>
+            <% end %>
           </td> 
         <% end %>
       </tr>
