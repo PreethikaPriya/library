@@ -17,11 +17,11 @@
   <tbody>
     <% @book_users.each do |book_user| %>
       <tr>
-        <td><%= book_user.book_id %></td>
-        <td><%= book_user.user_id %></td>
+        <td><%= book_user.book.name%></td>
+        <td><%= book_user.user.email %></td>
         <td><%= book_user.from %></td>
         <td><%= book_user.to %></td>
-        <td><%= book_user.status %></td>
+        <td><%= book_user.status.name%></td>
         <td><%= link_to 'Show', book_user %>|
         <%= link_to 'Edit', edit_book_user_path(book_user) %>|
         <%= link_to 'Destroy', book_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

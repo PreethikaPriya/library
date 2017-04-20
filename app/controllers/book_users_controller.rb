@@ -6,7 +6,7 @@ class BookUsersController < ApplicationController
   # GET /book_users
   # GET /book_users.json
   def index
-    @book_users = BookUser.all
+    @book_users = BookUser.set_current_user_records(current_user)
   end
 
   # GET /book_users/1
@@ -26,15 +26,19 @@ class BookUsersController < ApplicationController
   # POST /book_users
   # POST /book_users.json
   def create
-    @book_user = BookUser.new(book_user_params)
 
+    @book_user = BookUser.new
+    BookUser.create_book_user(params[:id],current_user,@book_user)   
+  
     respond_to do |format|
       if @book_user.save
         format.html { redirect_to @book_user, notice: 'Book user was successfully created.' }
         format.json { render :show, status: :created, location: @book_user }
+        format.js{}
       else
         format.html { render :new }
         format.json { render json: @book_user.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end

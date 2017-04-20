@@ -36,8 +36,8 @@
         <li class="active"><%= link_to "Books", books_path %> </li>
         <% if current_user.role == "admin" %>
         <li> <%= link_to "Category", categories_path %>  </li>
-         <li> <%= link_to "Books Alotted", book_users_path %>  </li>
         <% end %>
+        <li> <%= link_to "Books Alotted", book_users_path %>  </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">

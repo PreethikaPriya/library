@@ -7,6 +7,7 @@ class Ability
       can :manage, :all
     elsif user.role == "user"
       can :read, [Book]
+      can [:create, :read] ,[BookUser]
       # can :read, [Region]    
     end    
     # Define abilities for the passed in user here. For example:
