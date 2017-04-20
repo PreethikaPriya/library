@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create(email: 'admin@gmail.com',password: 'secret123', role: "admin")
+Status.create(name: 'Borrowed')
+Status.create(name: 'Collected')
+Status.create(name: 'Returned')
+Status.create(name: 'Overdue')

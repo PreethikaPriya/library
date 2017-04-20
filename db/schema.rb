@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419183020) do
+ActiveRecord::Schema.define(version: 20170420150104) do
 
   create_table "book_users", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "user_id"
     t.date     "from"
     t.date     "to"
-    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "status_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -27,11 +27,18 @@ ActiveRecord::Schema.define(version: 20170419183020) do
     t.string   "author"
     t.integer  "category_id"
     t.integer  "availability"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "borrowed_count"
   end
 
   create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

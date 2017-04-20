@@ -35,8 +35,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :status %>
-    <%= f.text_field :status %>
+    <%= f.label :status_id %>
+    <%= f.collection_select :status_id, Status.all, :id, :name, {prompt:"select status"} ,class: "form-control" , required: true %>
   </div>
 
   <div class="row">
