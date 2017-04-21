@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
+<script type="text/javascript">
+//   $(document).ready(function(){
+//   $('.borrow-book').click(function(event){
+//     var id = event.target.id;
+//     var url = '/book_users';
+//     var data = "id="+id;
+//     alert(id);
+//     alert(data);
+//     $.post(url,data);
+//   });
+// });
 
+</script>
 <h1>Browse Books</h1>
 
 <table class="table">
@@ -34,10 +46,11 @@
           <%#= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%  elsif can? :read, book  %>
           <td>
-            <% if book_borrowed(current_user,book.id) %>
+            <%# if book_borrowed(current_user,book.id)%>
+            <% if ((book_borrowed(current_user,book.id)) || (book_borrowed_status(current_user,book.id)))%>
               <button class= "btn btn-success borrow-book" id="<%= book.id %>">
                 Borrow Now
-              </button>
+              </button>                
             <% else %>
                <button class= "btn btn-primary">
                 Borrowed!
