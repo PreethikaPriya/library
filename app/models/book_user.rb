@@ -24,10 +24,10 @@ class BookUser < ApplicationRecord
 		book.with_lock do
 			if book.borrowed_count.to_i < book.availability 
 				book_user.book_id = book.id
-			    book_user.user_id = current_user.id
-			    book_user.from = Date.today
-			    book_user.to = Date.today + 15.days
-			    book_user.status_id = Status.where('name=?',"Borrowed").first.id
+		    book_user.user_id = current_user.id
+		    book_user.from = Date.today
+		    book_user.to = Date.today + 15.days
+		    book_user.status_id = Status.where('name=?',"Borrowed").first.id
 		  end  
 		end  
 	end

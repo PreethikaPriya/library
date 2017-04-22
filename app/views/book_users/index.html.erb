@@ -23,7 +23,12 @@
         <td><%= book_user.user.email %></td>
         <td><%= book_user.from %></td>
         <td><%= book_user.to %></td>
-        <td><%= book_user.status.name%></td>
+        <td>
+        <%= book_user.status.name%>
+        <% if book_user.to < Date.today %> 
+           <p class="red"> Overdue! </p>
+        <% end %>
+        </td>
         <% if current_user.role == "admin" %>
         <td>
         <%= link_to 'Show', book_user %>|
