@@ -21,13 +21,15 @@ class BookUser < ApplicationRecord
 
 	def self.create_book_user(id,current_user,book_user)
 		book = Book.where('id=?',id).first
-		if book.borrowed_count < book.availability 
-			book_user.book_id = book.id
-	    book_user.user_id = current_user.id
-	    book_user.from = Date.today
-	    book_user.to = Date.today + 15.days
-	    book_user.status_id = Status.where('name=?',"Borrowed").first.id
-	  end  
+		book.with_lock do
+			if book.borrowed_count.to_i < book.availability 
+				book_user.book_id = book.id
+			    book_user.user_id = current_user.id
+			    book_user.from = Date.today
+			    book_user.to = Date.today + 15.days
+			    book_user.status_id = Status.where('name=?',"Borrowed").first.id
+		  end  
+		end  
 	end
 
 	def self.set_current_user_records(current_user)
