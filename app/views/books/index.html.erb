@@ -35,13 +35,18 @@
           <%#= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%  elsif can? :read, book  %>
           <td>
-            <%# if book_borrowed(current_user,book.id)%>
-            <% if ((book_borrowed(current_user,book.id)) || (book_borrowed_status(current_user,book.id)))%>
-              <button class= "btn btn-success borrow-book" id="<%= book.id %>">
-                Borrow Now
-              </button>                
+            <% if ((book_borrowed(current_user,book.id)) || (book_borrowed_status(current_user,book.id))) %>
+              <% if ( book.borrowed_count.to_i < book.availability )%>
+                <button class= "btn btn-success borrow-book" id="<%= book.id %>">
+                  Borrow Now
+                </button>                
+              <% else %>
+                <button class= "btn btn-danger">
+                  Out of Stock!
+                </button>
+              <% end %>
             <% else %>
-               <button class= "btn btn-primary">
+              <button class= "btn btn-primary">
                 Borrowed!
               </button>
             <% end %>
