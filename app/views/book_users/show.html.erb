@@ -22,12 +22,12 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @book_user.status_id %>
+  <%= @book_user.status.name %>
 </p>
 
 <%= link_to 'Back', book_users_path %>
 
-<% if current_user.role == "admin" %>
+<% if current_user.role == "admin" && @book_user.status.name != "Returned" %>
   <%= link_to 'Edit', edit_book_user_path(@book_user) %> |
 <% end %>  
 

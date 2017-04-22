@@ -27,7 +27,9 @@
         <% if current_user.role == "admin" %>
         <td>
         <%= link_to 'Show', book_user %>|
-        <%= link_to 'Edit', edit_book_user_path(book_user) %>|
+        <% if book_user.status.name != "Returned" %>
+          <%= link_to 'Edit', edit_book_user_path(book_user) %>|
+        <% end %>  
         <%#= link_to 'Destroy', book_user, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
         <% end %>
