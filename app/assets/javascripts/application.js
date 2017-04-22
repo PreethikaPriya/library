@@ -14,9 +14,11 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(document).ready(function () {
-$('ul.nav > li').click(function (e) {
-    $('ul.nav > li').removeClass('active');
-    $(this).addClass('active');                
-});            
+$(document).ready(function () {	
+	$('ul.nav > li').click(function (e) {
+	    $('ul.nav > li').removeClass('active');
+	    $(this).addClass('active');                
+	});  
+	$('.myTable').DataTable();          
 });
+

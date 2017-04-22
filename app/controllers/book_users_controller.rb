@@ -32,12 +32,12 @@ class BookUsersController < ApplicationController
   
     respond_to do |format|
       if @book_user.save
-        format.html { redirect_to @book_user, notice: 'Book user was successfully created.' }
-        format.json { render :show, status: :created, location: @book_user }
+        # format.html { redirect_to @book_user, notice: 'Book user was successfully created.' }
+        # format.json { render :show, status: :created, location: @book_user }
         format.js{}
       else
-        format.html { render :new }
-        format.json { render json: @book_user.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @book_user.errors, status: :unprocessable_entity }
         format.js {}
       end
     end

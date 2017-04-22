@@ -1,4 +1,15 @@
-<table class="table">
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.borrow-book').click(function(event){
+    var id = event.target.id;
+    var url = '/book_users';
+    var data = "id="+id;
+    $.post(url,data);
+  });
+});
+</script>
+
+<table class="table myTable">
   <thead>
     <tr>
       <th>Name</th>
