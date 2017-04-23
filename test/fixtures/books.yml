@@ -7,7 +7,7 @@ one:
   availability: 1
 
 two:
-  name: MyString
-  author: MyString
-  category_id: 1
-  availability: 1
+  name: MyString2
+  author: MyString2
+  category_id: 2
+  availability: 2

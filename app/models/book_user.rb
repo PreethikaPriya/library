@@ -5,16 +5,25 @@ class BookUser < ApplicationRecord
 
 	after_save :update_book_availability_count
 
-	validates_presence_of :book_id ,:user_id ,:from, :to	,:status_id
+	validates_presence_of :book_id ,:user_id ,:from, :to,:status_id
 
 	validate :check_date
+	validate :multiple_borrows
 
+	def multiple_borrows
+		status_returned_id = Status.where('name=?',"Returned").first.id
+		books_borrowed = BookUser.where('user_id=? and book_id=? and status_id !=?', user_id, book_id,status_returned_id)
+		if !books_borrowed.empty?
+			errors.add(:book_id,"already borrowed and not returned yet!")
+		end	
+	end
+		
 	def check_date
-		if from > to 
+		if self.from > self.to 
 			errors.add(:to, "date should be greater than from date")
 		end
 
-		if to < Date.today
+		if self.to < Date.today
 			errors.add(:to , "date should be greater than today")
 		end 
 	end
