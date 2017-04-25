@@ -25,7 +25,7 @@
         <td><%= book_user.to %></td>
         <td>
         <%= book_user.status.name%>
-        <% if book_user.to < Date.today %> 
+        <% if book_user.to < Date.today && book_user.status.name != "Returned" %> 
            <p class="red"> Overdue! </p>
         <% end %>
         </td>
