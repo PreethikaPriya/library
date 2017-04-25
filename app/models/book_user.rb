@@ -8,7 +8,7 @@ class BookUser < ApplicationRecord
 	validates_presence_of :book_id ,:user_id ,:from, :to,:status_id
 
 	validate :check_date
-	validate :multiple_borrows
+	validate :multiple_borrows, on: :create
 
 	def multiple_borrows
 		status_returned_id = Status.where('name=?',"Returned").first.id
