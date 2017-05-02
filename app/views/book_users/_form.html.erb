@@ -1,3 +1,4 @@
+<% if current_user.role == "admin" %> 
 <%= form_for(book_user) do |f| %>
   <% if book_user.errors.any? %>
     <div id="error_explanation">
@@ -54,4 +55,5 @@
   </div>
   </div>
   </div>
+<% end %>
 <% end %>

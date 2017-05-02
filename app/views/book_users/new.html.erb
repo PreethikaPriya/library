@@ -1,5 +1,9 @@
+<% if current_user.role == "admin" %> 
 <h1>New Book User</h1>
 
 <%= render 'form', book_user: @book_user %>
 
 <%= link_to 'Back', book_users_path %>
+<% else %>
+You dont have access to  this content!
+<% end %>
