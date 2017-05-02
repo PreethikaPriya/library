@@ -1,3 +1,4 @@
+<% if current_user.role == "admin"%>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -31,3 +32,6 @@
   <%= link_to 'Edit', edit_book_user_path(@book_user) %> |
 <% end %>  
 
+<% else %>
+You dont have access to this content!
+<% end %>
